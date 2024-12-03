@@ -28,7 +28,10 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
+
+      - name: Remove package-lock.json
+        run: rm package-lock.json
 
       - name: Build Vue app
         env:
