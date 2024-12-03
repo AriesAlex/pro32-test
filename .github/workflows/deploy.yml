@@ -1,18 +1,13 @@
 on:
-  # Запуск при пушах в ветку main
   push:
     branches: ['main']
-
-  # Разрешает ручной запуск из вкладки Actions
   workflow_dispatch:
 
-# Задает необходимые разрешения для деплоя
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Гарантирует, что только один деплой выполняется одновременно
 concurrency:
   group: 'pages'
   cancel-in-progress: false
@@ -24,39 +19,30 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # Клонирует репозиторий
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Устанавливает Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '22'
 
-      # Устанавливает зависимости
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      # Удаляем package-lock.json
-      - name: Remove package-lock.json
-        run: rm package-lock.json
-
-      # Собирает Vue приложение
       - name: Build Vue app
+        env:
+          VITE_BASE_URL: '/pro32-test/'
         run: npm run build
 
-      # Настраивает GitHub Pages
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # Загружает артефакт сборки
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
 
-      # Деплоит на GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
