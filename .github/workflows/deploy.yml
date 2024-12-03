@@ -38,6 +38,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # Удаляем package-lock.json
+      - name: Remove package-lock.json
+        run: rm package-lock.json
+
       # Собирает Vue приложение
       - name: Build Vue app
         run: npm run build

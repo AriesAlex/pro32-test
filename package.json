@@ -18,7 +18,8 @@
     "vue-router": "^4.4.5"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.6.1"
+    "@rollup/rollup-linux-x64-gnu": "4.6.1",
+    "sass-embedded-linux-x64": "1.81.1"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
