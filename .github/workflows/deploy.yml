@@ -32,7 +32,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16' # Укажите вашу версию Node.js
+          node-version: '22'
 
       # Устанавливает зависимости
       - name: Install dependencies
@@ -50,7 +50,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist' # Изменено с './build' на './dist'
+          path: './dist'
 
       # Деплоит на GitHub Pages
       - name: Deploy to GitHub Pages
