@@ -23,6 +23,9 @@ export const useProductsStore = defineStore('products', () => {
     applyFilters()
   }
 
+  // Было бы лучше использовать computed свойство, но
+  // по тз требуется чтобы фильтры применять только
+  // при нажатии на кнопку
   function applyFilters() {
     filteredProducts.value = products.value.filter(product => {
       for (const [key, filterValue] of Object.entries(filters)) {
